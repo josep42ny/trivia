@@ -25,6 +25,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.42</version>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
@@ -39,6 +44,7 @@
     </dependencies>
 
     <build>
+        <finalName>trivia</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

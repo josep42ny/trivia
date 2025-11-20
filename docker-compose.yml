@@ -1,0 +1,39 @@
+name: 'movie-crud'
+services:
+  tomee:
+    container_name: tomee
+    image: tomee:jre21-webprofile
+    ports:
+      - "80:8080"
+    volumes:
+      - ./target:/usr/local/tomee/webapps
+    depends_on:
+      - db
+
+  db:
+    container_name: mysql
+    build:
+      target: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: movies
+      MYSQL_USER: webuser
+      MYSQL_PASSWORD: webuser
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "85:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
